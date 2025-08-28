@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Academic Grill</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f5f5f5;
+      color: #333;
+    }
+    header {
+      background: #222;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    nav {
+      background: #444;
+      padding: 10px;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      color: #ff9800;
+    }
+    main {
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+    h1, h2 {
+      color: #222;
+    }
+    footer {
+      background: #222;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Willkommen bei Academic Grill</h1>
+    <p>Lernen und Genuss an einem Ort</p>
+  </header>
+
+  <nav>
+    <a href="#">Startseite</a>
+    <a href="#">Menü</a>
+    <a href="#">Über uns</a>
+    <a href="#">Kontakt</a>
+  </nav>
+
+  <main>
+    <h2>Unser Konzept</h2>
+    <p>
+      Der Academic Grill verbindet kulinarischen Genuss mit einer akademischen Lernumgebung. 
+      Egal ob für eine schnelle Pause oder ein langes Treffen mit Freunden – bei uns gibt es 
+      leckere Gerichte und einen Platz zum Denken.
+    </p>
+
+    <h2>Öffnungszeiten</h2>
+    <p>Montag – Freitag: 10:00 – 22:00 Uhr</p>
+    <p>Samstag – Sonntag: 12:00 – 23:00 Uhr</p>
+  </main>
+
+  <footer>
+    <p>© 2024 Academic Grill | Designed by Parneet Kaur</p>
+  </footer>
+</body>
+</html>
