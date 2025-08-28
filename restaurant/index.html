@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La Bella Tavola – Italienisches Restaurant</title>
+
+  <style>
+    /* Allgemein */
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #fafafa;
+      color: #333;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #222;
+      color: #fff;
+      padding: 15px 40px;
+    }
+
+    header .logo {
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    header nav a {
+      color: #fff;
+      margin-left: 20px;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    header nav a:hover {
+      color: #f39c12;
+    }
+
+    /* Hero */
+    .hero {
+      background: url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092') no-repeat center/cover;
+      text-align: center;
+      color: white;
+      padding: 120px 20px;
+    }
+
+    .hero h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 1.2em;
+    }
+
+    /* Intro */
+    .intro {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 0 20px;
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    .intro h2 {
+      color: #e74c3c;
+      margin-bottom: 15px;
+    }
+
+    /* Speisekarte */
+    .menu {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .menu h2 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 2em;
+      color: #e74c3c;
+    }
+
+    .menu-section {
+      margin-bottom: 30px;
+    }
+
+    .menu-section h3 {
+      color: #c0392b;
+      border-bottom: 2px solid #f1c40f;
+      padding-bottom: 5px;
+    }
+
+    .menu-section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .menu-section li {
+      padding: 8px 0;
+      border-bottom: 1px dotted #ccc;
+    }
+
+    /* Kontakt */
+    .contact {
+      background: #f8f8f8;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .contact form {
+      max-width: 600px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .contact input,
+    .contact textarea {
+      margin: 10px 0;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .contact button {
+      padding: 12px;
+      border: none;
+      background: #e74c3c;
+      color: white;
+      font-size: 1em;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+
+    .contact button:hover {
+      background: #c0392b;
+    }
+
+    /* Footer */
+    footer {
+      background: #222;
+      color: #aaa;
+      text-align: center;
+      padding: 15px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <header>
+    <div class="logo">🍝 La Bella Tavola</div>
+    <nav>
+      <a href="#speisekarte">Speisekarte</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>Willkommen bei La Bella Tavola</h1>
+    <p>Italienische Küche mit Leidenschaft</p>
+  </section>
+
+  <!-- Intro -->
+  <section class="intro">
+    <h2>Über uns</h2>
+    <p>
+      La Bella Tavola ist ein familiengeführtes italienisches Restaurant im Herzen der Stadt. 
+      Seit vielen Jahren verwöhnen wir unsere Gäste mit traditionellen Rezepten, frischen Zutaten 
+      und viel Liebe zum Detail. Ob hausgemachte Pasta, knusprige Pizza aus dem Steinofen oder 
+      köstliche Desserts – bei uns finden Sie ein Stück Italien zum Genießen.
+    </p>
+    <p>
+      Wir legen besonderen Wert auf Qualität und eine warme, einladende Atmosphäre. 
+      Kommen Sie vorbei und lassen Sie sich von unserer Leidenschaft für gutes Essen begeistern!
+    </p>
+  </section>
+
+  <!-- Speisekarte -->
+  <section id="speisekarte" class="menu">
+    <h2>Unsere Speisekarte</h2>
+
+    <div class="menu-section">
+      <h3>Vorspeisen</h3>
+      <ul>
+        <li>Bruschetta al Pomodoro – 5,90€</li>
+        <li>Carpaccio di Manzo – 9,90€</li>
+        <li>Antipasti Misti – 11,90€</li>
+        <li>Caprese mit Büffelmozzarella – 8,50€</li>
+        <li>Vitello Tonnato – 12,50€</li>
+      </ul>
+    </div>
+
+    <div class="menu-section">
+      <h3>Hauptgerichte</h3>
+      <ul>
+        <li>Spaghetti Carbonara – 12,90€</li>
+        <li>Penne Arrabbiata – 11,50€</li>
+        <li>Risotto ai Funghi – 13,90€</li>
+        <li>Pizza Margherita – 9,90€</li>
+        <li>Pizza Diavola – 12,50€</li>
+        <li>Lasagne al Forno – 12,90€</li>
+        <li>Tagliatelle al Salmone – 14,50€</li>
+        <li>Gnocchi al Pesto – 11,90€</li>
+      </ul>
+    </div>
+
+    <div class="menu-section">
+      <h3>Desserts</h3>
+      <ul>
+        <li>Tiramisu – 5,90€</li>
+        <li>Panna Cotta mit Beeren – 6,50€</li>
+        <li>Gelato Misto – 4,90€</li>
+        <li>Zabaione – 6,90€</li>
+      </ul>
+    </div>
+
+    <div class="menu-section">
+      <h3>Getränke</h3>
+      <ul>
+        <li>Hauswein (Rot/Weiß) – 4,50€</li>
+        <li>Espresso – 2,50€</li>
+        <li>Limonata – 3,50€</li>
+        <li>Cappuccino – 3,20€</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Kontakt -->
+  <section id="kontakt" class="contact">
+    <h2>Kontakt & Reservierung</h2>
+    <form>
+      <input type="text" placeholder="Ihr Name" required>
+      <input type="email" placeholder="Ihre E-Mail" required>
+      <textarea placeholder="Ihre Nachricht"></textarea>
+      <button type="submit">Absenden</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 La Bella Tavola – Demo Website by [Dein Name]</p>
+  </footer>
+
+  <script>
+    // kleines Demo-Skript (Formularmeldung)
+    document.querySelector("form").addEventListener("submit", e => {
+      e.preventDefault();
+      alert("Vielen Dank für Ihre Nachricht! Wir melden uns bald.");
+    });
+  </script>
+</body>
+</html>
