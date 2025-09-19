@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Modernes Friseur-Studio — Schnitt, Farbe & Styling. Buche deinen Termin online." />
+  <title>Salon Lumière — Friseur & Styling</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* ------------------------
+       RESET & BASE
+       ------------------------ */
+    :root{
+      --bg:#0f0f10;
+      --card:#0f1720;
+      --accent:#ffb86b;
+      --muted:#9aa4b2;
+      --glass: rgba(255,255,255,0.04);
+      --radius:14px;
+      --max-w:1100px;
+      --shadow: 0 6px 20px rgba(2,6,23,0.6);
+      font-synthesis: none;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(255,184,107,0.06), transparent 8%),
+                  linear-gradient(180deg,#07121a 0%, #0f1720 60%);
+      color:#e6eef6;
+      font-family: 'Montserrat', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.4;
+      -webkit-tap-highlight-color: transparent;
+      padding-bottom:60px;
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;height:auto;display:block}
+
+    /* ------------------------
+       LAYOUT
+       ------------------------ */
+    .container{
+      max-width:var(--max-w);
+      margin:0 auto;
+      padding:28px;
+    }
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      padding:18px 0;
+    }
+    .brand{
+      display:flex;
+      gap:14px;
+      align-items:center;
+    }
+    .logo {
+      width:58px;height:58px;border-radius:12px;
+      background:linear-gradient(135deg,var(--accent),#ff6b6b);
+      display:grid;place-items:center;
+      box-shadow: 0 6px 18px rgba(255,184,107,0.12);
+      flex-shrink:0;
+    }
+    .logo svg{width:34px;height:34px;filter:drop-shadow(0 4px 8px rgba(0,0,0,0.35));}
+    .brand h1{font-family:'Playfair Display', serif;font-weight:700;margin:0;font-size:1.05rem}
+    .brand p{margin:0;color:var(--muted);font-size:.86rem}
+
+    nav{display:flex;gap:12px;align-items:center}
+    nav a{padding:8px 12px;border-radius:10px;color:var(--muted);font-weight:600}
+    nav a.cta{background:linear-gradient(90deg,var(--accent),#ff6b6b);color:#07121a;box-shadow:var(--shadow)}
+
+    /* ------------------------
+       HERO
+       ------------------------ */
+    .hero{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:28px;
+      align-items:center;
+    }
+    .hero-left{
+      padding:28px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .eyebrow{color:var(--accent);font-weight:700;text-transform:uppercase;font-size:.75rem;letter-spacing:1px}
+    .hero-title{
+      font-family:'Playfair Display', serif;
+      font-size:2.4rem;
+      margin:8px 0 12px;
+      line-height:1.02;
+      letter-spacing:-0.02em;
+    }
+    .hero-p{
+      color:var(--muted);margin-bottom:18px;font-size:1rem;
+    }
+    .actions{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{
+      display:inline-block;padding:12px 18px;border-radius:12px;font-weight:700;
+      background:linear-gradient(90deg,#13202a 0%, rgba(255,255,255,0.02) 100%);
+      border:1px solid rgba(255,255,255,0.04);
+      cursor:pointer;
+      transition:transform .18s ease, box-shadow .18s ease;
+      color:#e6eef6;
+    }
+    .btn:hover{transform:translateY(-4px)}
+    .btn.primary{background:linear-gradient(90deg,var(--accent),#ff6b6b);color:#07121a;box-shadow:0 10px 30px rgba(255,107,107,0.12)}
+    .kpis{display:flex;gap:14px;margin-top:20px;color:var(--muted);font-weight:700}
+    .kpis div{background:var(--glass);padding:10px 12px;border-radius:10px;font-size:.88rem}
+
+    /* HERO RIGHT — animated "cutting" card */
+    .hero-right{
+      width:100%;
+      height:360px;
+      border-radius:18px;
+      display:grid;
+      place-items:center;
+      position:relative;
+      overflow:visible;
+      background: linear-gradient(180deg, rgba(255,255,255,0.015), transparent);
+      border:1px solid rgba(255,255,255,0.03);
+      box-shadow: 0 20px 50px rgba(2,6,23,0.6);
+    }
+    .scene{
+      width:88%;
+      height:85%;
+      border-radius:14px;
+      background: linear-gradient(135deg,#091a1f, #07202a);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+      overflow:hidden;
+      padding:18px;
+      box-shadow: inset 0 -40px 80px rgba(0,0,0,0.35);
+    }
+    /* Animated hair-strand - simple svg path morphing simulated with transform */
+    .hair {
+      width:72%;
+      filter:drop-shadow(0 30px 40px rgba(0,0,0,0.55));
+      animation: sway 4s ease-in-out infinite;
+    }
+    @keyframes sway{
+      0%{transform:translateX(0) rotate(-2deg)}
+      50%{transform:translateX(6px) rotate(2deg)}
+      100%{transform:translateX(0) rotate(-2deg)}
+    }
+
+    /* ------------------------
+       SERVICES
+       ------------------------ */
+    section.services{
+      margin-top:28px;
+      display:grid;
+      grid-template-columns: repeat(3,1fr);
+      gap:16px;
+    }
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      border-radius:14px;padding:16px;border:1px solid rgba(255,255,255,0.03);
+      transition:transform .28s cubic-bezier(.2,.9,.3,1), box-shadow .28s;
+      cursor:default;
+      overflow:hidden;
+    }
+    .card:hover{transform:translateY(-10px);box-shadow:var(--shadow)}
+    .card h3{margin:8px 0 6px}
+    .card p{margin:0;color:var(--muted);font-size:.95rem}
+    .service-grid{display:grid;gap:12px}
+
+    /* ------------------------
+       ABOUT / TEAM
+       ------------------------ */
+    .about{
+      margin-top:28px;display:flex;gap:22px;align-items:center;
+      background:linear-gradient(90deg, rgba(255,255,255,0.01), transparent);
+      padding:18px;border-radius:14px;border:1px solid rgba(255,255,255,0.03);
+    }
+    .team{
+      display:flex;gap:12px;align-items:center;
+    }
+    .avatar{
+      width:84px;height:84px;border-radius:14px;background:linear-gradient(135deg,#0b6b61,#0ea5a3);
+      display:grid;place-items:center;font-weight:800;font-size:1.2rem;color:#07121a;
+      box-shadow:0 10px 30px rgba(0,0,0,0.45);
+    }
+
+    /* ------------------------
+       CONTACT / FOOTER
+       ------------------------ */
+    footer{margin-top:28px;color:var(--muted);display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+    .socials{display:flex;gap:10px}
+    .chip{padding:8px 10px;border-radius:10px;background:var(--glass);font-weight:600;color:var(--muted)}
+
+    /* ------------------------
+       MODAL (BOOKING)
+       ------------------------ */
+    .modal-backdrop{
+      position:fixed;inset:0;background:rgba(2,6,23,0.6);display:none;align-items:center;justify-content:center;padding:20px;
+      z-index:60;
+    }
+    .modal{background:linear-gradient(180deg,#07141a,#0b1a20);padding:22px;border-radius:14px;width:100%;max-width:520px;border:1px solid rgba(255,255,255,0.04);box-shadow:var(--shadow)}
+    .modal h2{margin:0 0 8px}
+    .form-row{display:flex;gap:12px;margin-bottom:10px}
+    .input, textarea, select{
+      width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);
+      background:transparent;color:inherit;font-size:0.95rem;
+    }
+    .close-btn{background:transparent;border:0;color:var(--muted);font-weight:700;cursor:pointer}
+
+    /* ------------------------
+       ANIMATIONS ON SCROLL (fade-in)
+       ------------------------ */
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease, transform .6s ease}
+    .reveal.show{opacity:1;transform:none}
+
+    /* ------------------------
+       RESPONSIVE
+       ------------------------ */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr;grid-auto-rows:auto}
+      section.services{grid-template-columns:repeat(2,1fr)}
+      .hero-right{height:300px}
+    }
+    @media (max-width:640px){
+      header{padding:8px 0}
+      .brand h1{font-size:1rem}
+      .hero-title{font-size:1.6rem}
+      section.services{grid-template-columns:1fr}
+      .hero-right{height:220px}
+      .avatar{width:64px;height:64px}
+    }
+
+    /* small helper */
+    .muted{color:var(--muted)}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true">
+          <!-- scissors icon -->
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M3 5c2 2 5 5 8 8" stroke="#07121a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M15 5c2 2 4 4 6 6" stroke="#07121a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="6.5" cy="6.5" r="3.2" fill="#07121a"/>
+            <circle cx="17.5" cy="17.5" r="3.2" fill="#07121a"/>
+          </svg>
+        </div>
+        <div>
+          <h1>Salon Lumière</h1>
+          <p class="muted">Schnitt • Farbe • Styling</p>
+        </div>
+      </div>
+
+      <nav aria-label="Hauptnavigation">
+        <a href="#services">Services</a>
+        <a href="#team">Team</a>
+        <a class="cta" id="book-now-btn" href="#book">Jetzt buchen</a>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" aria-label="Einführung">
+      <div class="hero-left reveal" data-delay="80">
+        <div class="eyebrow">Exklusive Looks</div>
+        <h2 class="hero-title">Frisch. Mutig. Zeitlos.<br><span class="muted" style="font-weight:600">Dein neuer Schnitt wartet</span></h2>
+        <p class="hero-p">Im Salon Lumière kombinieren wir Handwerk mit modernem Design. Persönliche Beratung, nachhaltige Produkte und Urban-Style — alles unter einem Dach.</p>
+
+        <div class="actions">
+          <button class="btn primary" id="open-book">Termin buchen</button>
+          <a class="btn" href="#services">Unsere Services</a>
+          <a class="btn" href="#team">Team & Preise</a>
+        </div>
+
+        <div class="kpis" aria-hidden="true">
+          <div>⭐ 4.9/5 Kundenzufriedenheit</div>
+          <div>⏱️ 20–45 min Styling</div>
+          <div>🌱 100% nachhaltige Farben</div>
+        </div>
+
+      </div>
+
+      <div class="hero-right reveal" data-delay="120" aria-hidden="true">
+        <div class="scene" role="img" aria-label="Illustration: stilisierte Haarsträhnen">
+          <!-- stylized hair SVG -->
+          <svg class="hair" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+            <defs>
+              <linearGradient id="g1" x1="0" x2="1">
+                <stop offset="0" stop-color="#ffb86b"/>
+                <stop offset="1" stop-color="#ff6b6b"/>
+              </linearGradient>
+              <filter id="f1" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="10" result="b"/>
+                <feBlend in="SourceGraphic" in2="b"/>
+              </filter>
+            </defs>
+            <g filter="url(#f1)">
+              <path d="M30,220 C160,20 310,380 430,220 C530,100 700,300 770,210" stroke="url(#g1)" stroke-width="42" stroke-linecap="round" fill="none" opacity="0.98"/>
+              <path d="M20,260 C160,80 320,420 450,260 C560,150 690,350 760,270" stroke="rgba(255,255,255,0.06)" stroke-width="120" stroke-linecap="round" fill="none" />
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="services reveal" aria-label="Unsere Services" style="margin-top:20px;">
+      <article class="card" tabindex="0">
+        <div class="service-grid">
+          <h3>Schnitt & Beratung</h3>
+          <p>Präzise Ladies & Gentlemen Cuts, persönliche Stilberatung und Formgebung für deinen Typ.</p>
+          <div class="muted" style="margin-top:8px">ab 35€</div>
+        </div>
+      </article>
+
+      <article class="card" tabindex="0">
+        <div class="service-grid">
+          <h3>Farbe & Balayage</h3>
+          <p>Natürliche Verläufe, starke Kontraste oder sanfte Farbauffrischung — mit nachhaltigen Produkten.</p>
+          <div class="muted" style="margin-top:8px">ab 55€</div>
+        </div>
+      </article>
+
+      <article class="card" tabindex="0">
+        <div class="service-grid">
+          <h3>Styling & Events</h3>
+          <p>Hochsteckfrisuren, Brautstyling oder red carpet Looks — wir bringen Glanz in deinen Anlass.</p>
+          <div class="muted" style="margin-top:8px">ab 40€</div>
+        </div>
+      </article>
+    </section>
+
+    <!-- ABOUT / TEAM -->
+    <section id="team" class="about reveal" aria-label="Über uns">
+      <div style="flex:1">
+        <h3 style="margin:0 0 8px">Unser Team</h3>
+        <p class="muted" style="margin:0 0 10px">Erfahrene Stylisten mit internationaler Ausbildung — kreativ und freundlich.</p>
+
+        <div style="display:flex;gap:12px;align-items:center">
+          <div class="avatar" aria-hidden="true">AL</div>
+          <div>
+            <div style="font-weight:700">Alex Lévy</div>
+            <div class="muted">Creative Director • Color Specialist</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="width:320px">
+        <div style="background:var(--glass);padding:12px;border-radius:10px;">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <div style="font-weight:700">Öffnungszeiten</div>
+              <div class="muted">Mo–Fr 09:00–19:00 • Sa 09:00–16:00</div>
+            </div>
+            <div class="chip">+49 30 1234567</div>
+          </div>
+        </div>
+        <div style="height:8px"></div>
+        <div style="background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:12px;border-radius:10px;">
+          <strong style="display:block">Aktuelles Angebot</strong>
+          <div class="muted">10% Student:innenrabatt auf Colorationen (Mi & Do).</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="reveal" aria-label="Kontakt">
+      <div>
+        <strong>Salon Lumière</strong>
+        <div class="muted">Kreuzberg, Berlin • info@salon-lumiere.de</div>
+      </div>
+
+      <div class="socials" aria-hidden="true">
+        <a class="chip" href="#" aria-label="Instagram">IG</a>
+        <a class="chip" href="#" aria-label="Facebook">FB</a>
+        <a class="chip" href="#" aria-label="TikTok">TT</a>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- MODAL / BOOKING -->
+  <div class="modal-backdrop" id="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal" role="document" aria-labelledby="modal-title">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <h2 id="modal-title">Termin buchen</h2>
+        <button class="close-btn" id="close-modal" aria-label="Schließen">✕</button>
+      </div>
+
+      <form id="booking-form" onsubmit="return handleBooking(event)" novalidate>
+        <div class="form-row">
+          <input class="input" name="name" type="text" placeholder="Dein Name" required aria-label="Name">
+        </div>
+        <div class="form-row">
+          <input class="input" name="phone" type="tel" placeholder="Telefon" aria-label="Telefon">
+          <input class="input" name="email" type="email" placeholder="E-Mail" required aria-label="E-Mail">
+        </div>
+        <div class="form-row">
+          <select class="input" name="service" aria-label="Service">
+            <option value="cut">Schnitt</option>
+            <option value="color">Farbe / Balayage</option>
+            <option value="event">Styling / Event</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <input class="input" name="date" type="date" aria-label="Wunschtermin">
+        </div>
+
+        <div style="display:flex;gap:12px;align-items:center;margin-top:8px">
+          <button type="submit" class="btn primary">Anfrage senden</button>
+          <button type="button" class="btn" id="close-modal-2">Abbrechen</button>
+        </div>
+
+        <p id="booking-msg" class="muted" style="margin-top:10px;font-size:.95rem"></p>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // ------------------------
+    // Small progressive enhancements & interactions
+    // ------------------------
+
+    // Show modal
+    const modal = document.getElementById('modal');
+    const openBtns = document.querySelectorAll('#open-book, #book-now-btn');
+    const closeBtns = document.querySelectorAll('#close-modal, #close-modal-2');
+
+    function showModal(){
+      modal.style.display = 'flex';
+      modal.setAttribute('aria-hidden','false');
+      // trap focus simplistic:
+      document.querySelector('.modal').focus();
+    }
+    function hideModal(){
+      modal.style.display = 'none';
+      modal.setAttribute('aria-hidden','true');
+    }
+    openBtns.forEach(b => b.addEventListener('click', (e)=>{ e.preventDefault(); showModal(); }));
+    closeBtns.forEach(b => b.addEventListener('click', ()=> hideModal()));
+    modal.addEventListener('click', (e)=>{ if(e.target === modal) hideModal(); });
+
+    // Booking handler (frontend only - replace with fetch to server endpoint)
+    function handleBooking(e){
+      e.preventDefault();
+      const f = e.target;
+      const data = new FormData(f);
+      const name = data.get('name') || '—';
+      const service = data.get('service') || 'Anfrage';
+      // simulate success
+      const msg = document.getElementById('booking-msg');
+      msg.textContent = `Danke ${name}! Wir haben deine Anfrage für "${service}" erhalten. Wir melden uns per E-Mail.`;
+      // clear fields lightly
+      f.reset();
+      // keep modal open briefly to show message
+      return false;
+    }
+
+    // IntersectionObserver for reveal animations
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(en=>{
+        if(en.isIntersecting){
+          setTimeout(()=> en.target.classList.add('show'), (en.target.dataset.delay||0));
+          io.unobserve(en.target);
+        }
+      })
+    }, {threshold:0.12});
+    reveals.forEach(r => io.observe(r));
+
+    // Keyboard accessibility: ESC closes modal
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape' && modal.style.display === 'flex') hideModal();
+    });
+
+    // small micro-interaction: accessible focus styles
+    document.addEventListener('focusin', (e)=>{
+      const t = e.target;
+      if(t.classList && (t.classList.contains('card') || t.tagName === 'A' || t.tagName === 'BUTTON' || t.tagName === 'INPUT')){
+        t.style.outline = '3px solid rgba(255,184,107,0.12)';
+        t.style.outlineOffset = '3px';
+      }
+    });
+    document.addEventListener('focusout', (e)=>{
+      const t = e.target;
+      if(t.style) { t.style.outline = ''; t.style.outlineOffset = ''; }
+    });
+
+    // Tiny progressive enhancement: presence of touch
+    if('ontouchstart' in window) document.body.classList.add('touch');
+
+    // Ensure focusability for cards
+    document.querySelectorAll('.card').forEach(c=> c.setAttribute('role','article'));
+
+  </script>
+</body>
+</html>
